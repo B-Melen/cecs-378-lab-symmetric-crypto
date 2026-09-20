@@ -6,15 +6,15 @@
 # GitHub knows you as a username, Canvas knows you as a student, and this is
 # the only place those two meet. A blank or wrong ID means a grade that lands
 # on nobody, and I have to come find you to fix it.
-name: "YOUR NAME AS IT APPEARS IN CANVAS"
-student_id: "YOUR 9-DIGIT CSULB ID"
+name: "Brandon Melendez"
+student_id: "029578599"
 
 # The autograder reads only the honor flag below. Each ward is graded by
 # running your exploit and checking its proof with the oracle, so there is no
 # ward flag to paste. The lines below are for your own record: ward II and
 # ward IV recover a CECS378 flag; ward I and ward III proofs are a duplicated
 # block and a forged token, not flags.
-honor: CECS378{honor_PASTE_FROM_pledge.py}
+honor: CECS378{honor_9b5dd5d084701688882af07c}
 ward2: CECS378{ward2_...}
 ward4: CECS378{ward4_...}   # OMEGA WARD (Ω stretch)
 ---
