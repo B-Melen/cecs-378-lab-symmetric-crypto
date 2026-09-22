@@ -14,7 +14,7 @@ student_id: "029578599"
 # ward flag to paste. The lines below are for your own record: ward II and
 # ward IV recover a CECS378 flag; ward I and ward III proofs are a duplicated
 # block and a forged token, not flags.
-honor: CECS378{honor_9b5dd5d084701688882af07c}
+honor: CECS378{honor_61089eb5a18ea0a6a8454a04}
 ward2: CECS378{ward2_...}
 ward4: CECS378{ward4_...}   # OMEGA WARD (Ω stretch)
 ---
