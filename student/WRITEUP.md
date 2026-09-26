@@ -35,20 +35,20 @@ won't sign their work doesn't get paid.
 
 ## Ward I — The Wisp (ECB detection)
 
-- **How I made the pattern flicker:** I split each ciphertext into 16-byte blocks and looked for a duplicate. ECB encrypts each block independently, so identical plaintext blocks convert into identical ciphertext blocks while other modes don’t. The ciphertext with a repeat was the ECB one.
+- **How I made the pattern flicker:** I split each ciphertext into 16 byte blocks and looked for a duplicate. ECB encrypts each block independently, so identical plaintext blocks convert into identical ciphertext blocks while other modes don’t. The ciphertext with a repeat was the ECB one.
 - **The real-world sin this is (name the CVE class):** CWE-327, which is broken or risky crypto use, specifically ECB misuse, the "ECB penguin" flaw where repeated plaintext blocks leak structure through the ciphertext.
 
 ## Ward II — The Rune Golem (ECB byte-at-a-time)
 
-- **The block size I measured, and how I measured it:**
-- **How prying one rune at a time recovers the whole word:**
-- **Where this same flaw bites real systems:**
+- **The block size I measured, and how I measured it:** I measured 16 bytes. Found by growing input length 1 byte at a time. The ciphertext length jumped from 48 to 64 bytes once the input reached 9 bytes, a 16 byte jump.
+- **How prying one rune at a time recovers the whole word:** Pad input so the next unknown secret byte lands as the last byte of a block. I try all 256 values there and compare ciphertext blocks to the oracle output. The match reveals the byte. Go forward one byte at a time to recover the whole secret.
+- **Where this same flaw bites real systems:** Any system that appends attacker input next to a secret before ECB encrypting it lets an attacker extract the secret without the key. Some examples would be tokens or cookies with a fixed key.
 
 ## Ward III — The Mirror Knight (CBC bit-flipping)
 
-- **Which ciphertext byte(s) I flipped, and what each plaintext byte became:**
-- **Why CBC let me forge a sigil the ward couldn't question:**
-- **Where this same flaw bites real systems:**
+- **Which ciphertext byte(s) I flipped, and what each plaintext byte became:** Block 2 (0-based), positions 0–11, via `old_cipher ^ known ^ desired, turning the next block into `;admin=true;`.
+- **Why CBC let me forge a sigil the ward couldn't question:** CBC has no integrity check so flipping a ciphertext byte deterministically flips the same position plaintext byte in the next block, undetected.
+- **Where this same flaw bites real systems:** Classic CBC bit flipping cookie or session forgery. This is why AEAD is preferred over unauthenticated CBC.
 
 ## Ward IV — OMEGA WARD (CBC padding oracle)  *(optional Ω stretch)*
 
