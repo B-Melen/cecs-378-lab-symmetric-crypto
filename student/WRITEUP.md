@@ -35,8 +35,8 @@ won't sign their work doesn't get paid.
 
 ## Ward I — The Wisp (ECB detection)
 
-- **How I made the pattern flicker:**
-- **The real-world sin this is (name the CVE class):**
+- **How I made the pattern flicker:** I split each ciphertext into 16-byte blocks and looked for a duplicate. ECB encrypts each block independently, so identical plaintext blocks convert into identical ciphertext blocks while other modes don’t. The ciphertext with a repeat was the ECB one.
+- **The real-world sin this is (name the CVE class):** CWE-327, which is broken or risky crypto use, specifically ECB misuse, the "ECB penguin" flaw where repeated plaintext blocks leak structure through the ciphertext.
 
 ## Ward II — The Rune Golem (ECB byte-at-a-time)
 
