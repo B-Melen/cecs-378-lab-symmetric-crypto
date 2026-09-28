@@ -52,8 +52,8 @@ won't sign their work doesn't get paid.
 
 ## Ward IV — OMEGA WARD (CBC padding oracle)  *(optional Ω stretch)*
 
-- **What the one leaked bit told me, and how it cascades into full plaintext:**
-- **The real-world reckoning (POODLE / Lucky 13):**
+- **What the one leaked bit told me, and how it cascades into full plaintext:** I was given one yes/no signal ("valid padding?") per query. This forges a fake previous block, and brute forcing one byte at a time (last byte to first) lets exactly one of 256 guesses validate. This reveals the AES intermediate state. XOR with the real previous block gives plaintext, and repeat per block to recover everything without a key.
+- **The real-world reckoning (POODLE / Lucky 13):** POODLE and Lucky 13 are both padding oracle attacks on CBC that pushed TLS toward AEAD ciphers.
 
 ## Behind the curtain  *(optional, for the curious)*
 
@@ -62,4 +62,4 @@ won't sign their work doesn't get paid.
 
 ## Sources
 
--
+-https://www.portnox.com/cybersecurity-101/general-security/what-is-cipher-block-chaining/
