@@ -36,7 +36,7 @@ won't sign their work doesn't get paid.
 ## Ward I — The Wisp (ECB detection)
 
 - **How I made the pattern flicker:** I split each ciphertext into 16 byte blocks and looked for a duplicate. ECB encrypts each block independently, so identical plaintext blocks convert into identical ciphertext blocks while other modes don’t. The ciphertext with a repeat was the ECB one.
-- **The real-world sin this is (name the CVE class):** CWE-327, which is broken or risky crypto use, specifically ECB misuse, the "ECB penguin" flaw where repeated plaintext blocks leak structure through the ciphertext.
+- **The real-world sin this is (name the CVE class):** CWE-327 (use of a broken or risky cryptographic algorithm). This is a weakness class rather than a single CVE. ECB misuse is the "ECB penguin" flaw, where repeated plaintext blocks leak structure through the ciphertext.
 
 ## Ward II — The Rune Golem (ECB byte-at-a-time)
 
@@ -46,7 +46,7 @@ won't sign their work doesn't get paid.
 
 ## Ward III — The Mirror Knight (CBC bit-flipping)
 
-- **Which ciphertext byte(s) I flipped, and what each plaintext byte became:** Block 2 (0-based), positions 0–11, via `old_cipher ^ known ^ desired, turning the next block into `;admin=true;`.
+- **Which ciphertext byte(s) I flipped, and what each plaintext byte became:** Block 2 (0-based), positions 0–11, via `old_cipher ^ known ^ desired`, turning the next block into `;admin=true;`.
 - **Why CBC let me forge a sigil the ward couldn't question:** CBC has no integrity check so flipping a ciphertext byte deterministically flips the same position plaintext byte in the next block, undetected.
 - **Where this same flaw bites real systems:** Classic CBC bit flipping cookie or session forgery. This is why AEAD is preferred over unauthenticated CBC.
 
@@ -62,4 +62,4 @@ won't sign their work doesn't get paid.
 
 ## Sources
 
--https://www.portnox.com/cybersecurity-101/general-security/what-is-cipher-block-chaining/
+- https://www.portnox.com/cybersecurity-101/general-security/what-is-cipher-block-chaining/
